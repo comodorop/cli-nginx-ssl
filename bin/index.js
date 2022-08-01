@@ -16,7 +16,7 @@ console.log(template)
 fs.writeFile(`/etc/nginx/sites-available/${options.domain}`, template, (err) => {
     if (err) throw err;
     console.log('File is created successfully.');
-    executeCommandLine(`ln -s /etc/nginx/sites-available/${options.domain}  /etc/nginxTest/sites-enable/.`).then(msg => {
+    executeCommandLine(`ln -s /etc/nginx/sites-available/${options.domain}  /etc/nginx/sites-enable/.`).then(msg => {
         executeCommandLine(`sudo certbot --nginx -d ${options.domain}`).then(msg=>{
             console.log(msg)
         }).catch(err=>{
