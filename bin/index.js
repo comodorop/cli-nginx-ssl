@@ -13,10 +13,10 @@ const options = yargs
 const greeting = `Hello, ${options.domain}! ${options.port}`;
 let template = templateNginx(options.domain, options.port)
 console.log(template)
-fs.writeFile(`/etc/nginx/sites-avaliable/${options.domain}`, template, (err) => {
+fs.writeFile(`/etc/nginx/sites-available/${options.domain}`, template, (err) => {
     if (err) throw err;
     console.log('File is created successfully.');
-    executeCommandLine(`ln -s /etc/nginx/sites-avaliable/${options.domain}  /etc/nginxTest/sites-enable/.`).then(msg => {
+    executeCommandLine(`ln -s /etc/nginx/sites-available/${options.domain}  /etc/nginxTest/sites-enable/.`).then(msg => {
         executeCommandLine(`sudo certbot --nginx -d ${options.domain}`).then(msg=>{
             console.log(msg)
         }).catch(err=>{
